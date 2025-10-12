@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacked By Erlik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Black+Ops+One&family=Monoton&family=Rajdhani:wght@700&family=Audiowide&family=VT323&family=Share+Tech+Mono&family=Roboto+Mono:wght@700&family=Exo+2:wght@800&family=Fira+Mono:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Fira Mono', monospace;
+            animation: colorShift 10s infinite alternate;
+        }
+        @keyframes colorShift {
+            0% { filter: hue-rotate(0deg); }
+            33% { filter: hue-rotate(120deg); } /* Yeşil */
+            66% { filter: hue-rotate(300deg); } /* Mor */
+            100% { filter: hue-rotate(200deg); } /* Kapalı mavi */
+        }
+        .terminal {
+            background: rgba(0, 10, 0, 0.85);
+            border: 3px solid #0f0;
+            padding: 25px;
+            box-shadow: 0 0 40px #0f0, inset 0 0 15px #0f0;
+            text-align: left;
+            width: 650px;
+            max-width: 95%;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .terminal:hover {
+            transform: rotateX(10deg) rotateY(10deg);
+        }
+        .terminal::before {
+            content: 'root@erlik:~# ';
+            color: #0f0;
+            font-family: 'VT323', monospace;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px #0f0;
+        }
+        .terminal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(0, 255, 0, 0.1));
+            pointer-events: none;
+        }
+        h1 {
+            font-size: 4rem;
+            font-family: 'Exo 2', sans-serif;
+            color: #0f0;
+            text-shadow: 0 0 25px #0f0, 0 0 50px #0f0;
+            margin: 0;
+            animation: aggressiveGlitch 0.5s linear infinite;
+        }
+        @keyframes aggressiveGlitch {
+            0% { transform: translate(0, 0) skew(0deg); }
+            8% { transform: translate(8px, 5px) skew(18deg); color: #f00; }
+            16% { transform: translate(-8px, -5px) skew(-18deg); color: #0f0; }
+            24% { transform: translate(6px, 4px) skew(22deg); color: #ff0; }
+            32% { transform: translate(-6px, -4px) skew(-22deg); color: #0f0; }
+            40% { transform: translate(0, 0) skew(0deg); }
+            48% { transform: translate(7px, 6px) skew(25deg); color: #00f; }
+            56% { transform: translate(-7px, -6px) skew(-25deg); color: #0f0; }
+            64% { transform: translate(5px, 3px) skew(15deg); color: #f0f; }
+            72% { transform: translate(-5px, -3px) skew(-15deg); color: #0f0; }
+            80% { transform: translate(4px, 2px) skew(10deg); color: #ff0; }
+            88% { transform: translate(-4px, -2px) skew(-10deg); color: #0f0; }
+            100% { transform: translate(0, 0) skew(0deg); }
+        }
+        p {
+            font-size: 1.6rem;
+            font-family: 'Share Tech Mono', monospace;
+            color: #0f0;
+            margin: 20px 0;
+            animation: type 0.08s steps(40, end) infinite;
+        }
+        @keyframes type {
+            0%, 100% { border-right: 3px solid #0f0; }
+            50% { border-right: 3px solid transparent; }
+        }
+        .github-link {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .github-logo {
+            width: 30px;
+            height: 30px;
+            opacity: 0.7;
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 0 5px #fff);
+        }
+        .github-logo:hover {
+            opacity: 1;
+            transform: rotate(360deg) scale(1.4);
+            filter: drop-shadow(0 0 12px #0f0) brightness(2);
+        }
+        .matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.9;
+        }
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #0f0;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleBurst 1s ease-out forwards;
+        }
+        @keyframes particleBurst {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix" class="matrix"></canvas>
+    <div class="terminal" id="terminal">
+        <h1>Hacked By Erlik</h1>
+        <p id="hackMessage">System Breached.</p>
+        <a href="https://github.com/Erlik-Shadow" target="_blank" class="github-link">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="github-logo">
+        </a>
+    </div>
+    <script>
+        // Matrix Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        const chars = '01HACKEDERLIKハックされた';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = Math.floor(Math.random() * canvas.height / fontSize);
+        }
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px Fira Mono';
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.93)
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 20);
+
+        // Dynamic Hack Messages
+        const messages = [
+            'System Breached.',
+            'Access Denied.',
+            'Firewall Crushed.',
+            'Erlik Owns You.',
+            'Data Compromised.',
+            'Security Annihilated.'
+        ];
+        let messageIndex = 0;
+        const hackMessageElement = document.getElementById('hackMessage');
+        function updateHackMessage() {
+            hackMessageElement.textContent = messages[messageIndex];
+            messageIndex = (messageIndex + 1) % messages.length;
+        }
+        setInterval(updateHackMessage, 2000);
+
+        // Particle Effects
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.7) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${e.clientX}px`;
+                particle.style.top = `${e.clientY}px`;
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1000);
+            }
+        });
+
+        // 3D Terminal Rotation
+        const terminal = document.getElementById('terminal');
+        document.addEventListener('mousemove', (e) => {
+            const rect = terminal.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            const rotateX = mouseY / rect.height * -20;
+            const rotateY = mouseX / rect.width * 20;
+            terminal.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        // Resize Handler
+        window.addEventListener('resize', () => {
+            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth;
+        });
+    </script>
+</body>
+</html>
