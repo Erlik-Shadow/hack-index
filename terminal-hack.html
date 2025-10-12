@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Breach Detected</title>
+    <style>
+        /* EFSANEVİ FONT - "Orbitron" ve "Share Tech Mono" */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #00ff00; /* Klasik yeşil terminal rengi */
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            border: 1px solid #00ff00;
+            background-color: rgba(10, 10, 10, 0.8);
+            box-shadow: 0 0 20px #00ff00, inset 0 0 20px rgba(0, 255, 0, 0.1);
+            position: relative;
+            max-width: 800px;
+        }
+
+        /* GLITCH EFEKTİ için CSS */
+        .glitch {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                         -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+                         0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            animation: glitch-effect 5s infinite;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .glitch span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .glitch span:first-child {
+            animation: glitch-effect-1 2s infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            transform: translate(-0.025em, -0.0125em);
+            opacity: 0.8;
+        }
+
+        .glitch span:last-child {
+            animation: glitch-effect-2 3s infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            transform: translate(0.0125em, 0.025em);
+            opacity: 0.8;
+        }
+
+        @keyframes glitch-effect {
+            0%, 14%, 15%, 49%, 50%, 99%, 100% {
+                text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+                             -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+                             0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            15%, 49% {
+                text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+                             0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+                             -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+            50%, 99% {
+                text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+                             0.05em 0 0 rgba(0, 255, 0, 0.75),
+                             0 -0.05em 0 rgba(0, 0, 255, 0.75);
+            }
+        }
+
+        @keyframes glitch-effect-1 {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(-5px); }
+            66% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes glitch-effect-2 {
+            0% { transform: translateX(0); }
+            33% { transform: translateX(5px); }
+            66% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .terminal {
+            text-align: left;
+            background-color: #000;
+            border: 1px solid #333;
+            padding: 1rem;
+            margin: 1rem auto;
+            height: 200px;
+            overflow-y: auto;
+            width: 80%;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        .terminal-line {
+            animation: typewriter 4s steps(40) 1s normal both;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .blink {
+            animation: blink-animation 1s steps(2, start) infinite;
+        }
+
+        @keyframes blink-animation {
+            to { visibility: hidden; }
+        }
+
+        .signature {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+            margin-top: 2rem;
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Yağmuru Arka Planı -->
+    <canvas id="matrix-bg"></canvas>
+
+    <div class="container">
+        <div class="glitch">
+            SİSTEM İHLALİ
+            <span aria-hidden="true">SİSTEM İHLALİ</span>
+            <span aria-hidden="true">SİSTEM İHLALİ</span>
+        </div>
+
+        <div class="subtitle">GÜVENLİK PROTOKOLÜ ÇÖKTÜ - ERİŞİM ENGELLENEMİYOR</div>
+
+        <div class="terminal">
+            <div class="terminal-line">> İlk tarama tamamlandı... Güvenlik açıkları tespit edildi.</div>
+            <div class="terminal-line">> Exploit yükleniyor... Başarılı.</div>
+            <div class="terminal-line">> Yönetici erişimi ele geçiriliyor... Başarılı.</div>
+            <div class="terminal-line">> Tüm veritabanlarına erişim sağlandı.</div>
+            <div class="terminal-line">> Arka kapı (backdoor) yerleştiriliyor... Başarılı.</div>
+            <div class="terminal-line">> Log temizleme işlemi başlatıldı... Tamamlandı.</div>
+            <div class="terminal-line">> <span class="blink">_</span></div>
+        </div>
+
+        <div class="signature">Hacked by Erlik</div>
+    </div>
+
+    <!-- EFSANEVI JS YAPISI -->
+    <script>
+        // Matrix Yağmuru Efekti
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&!=+*";
+        const charArray = chars.split('');
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for(let x = 0; x < columns; x++) {
+            drops[x] = Math.floor(Math.random() * canvas.height / fontSize);
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff00';
+            ctx.font = fontSize + 'px "Share Tech Mono"';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Terminal Yazı Animasyonu için JS
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const lines = document.querySelectorAll('.terminal-line');
+            lines.forEach((line, index) => {
+                line.style.animationDelay = `${index * 2}s`;
+            });
+        });
+
+        // Rastgele Glitch Efekti için
+        setInterval(() => {
+            const glitch = document.querySelector('.glitch');
+            glitch.style.animation = 'none';
+            void glitch.offsetWidth; // Trigger reflow
+            glitch.style.animation = 'glitch-effect 5s infinite';
+        }, 8000);
+
+        // Sayfa Yüklendiğinde Rastgele Sistem Mesajı
+        const messages = [
+            "CRITICAL FAILURE DETECTED",
+            "NETWORK COMPROMISED",
+            "FIREWALL BYPASSED",
+            "ROOT ACCESS OBTAINED",
+            "ENCRYPTION KEYS STOLEN",
+            "ALL DATA EXPOSED"
+        ];
+        const subtitle = document.querySelector('.subtitle');
+        setInterval(() => {
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            subtitle.textContent = randomMessage;
+        }, 3000);
+    </script>
+</body>
+</html>
